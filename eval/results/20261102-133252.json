@@ -1,0 +1,921 @@
+{
+  "model": "claude-haiku-5-5",
+  "run_at": "2026-11-02T13:32:52",
+  "rows": [
+    {
+      "mode": "rag_only",
+      "id": "lookup-burrow-yards",
+      "category": "lookup",
+      "question": "How many passing yards did Joe Burrow have in 2024?",
+      "answer": "Joe Burrow had 4,918 passing yards in the 2024 regular season, across 17 games [player:Joe Burrow].",
+      "tools": [],
+      "sources": [
+        "player:Joe Burrow",
+        "player:Joe Flacco",
+        "player:Cooper Rush",
+        "player:Mason Rudolph"
+      ],
+      "latency_ms": 2005,
+      "usage": {
+        "input_tokens": 1607,
+        "output_tokens": 45
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "lookup-lamar-rating",
+      "category": "lookup",
+      "question": "What was Lamar Jackson's passer rating in 2024?",
+      "answer": "Lamar Jackson's 2024 passer rating was **119.6**, which ranked 1st among 43 qualifying QBs [player:Lamar Jackson] [leaderboard:passer_rating].",
+      "tools": [],
+      "sources": [
+        "player:Lamar Jackson",
+        "player:Drake Maye",
+        "leaderboard:passer_rating",
+        "player:Josh Allen"
+      ],
+      "latency_ms": 3889,
+      "usage": {
+        "input_tokens": 1545,
+        "output_tokens": 126
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "lookup-daniels-p2s",
+      "category": "lookup",
+      "question": "What was Jayden Daniels' pressure-to-sack rate?",
+      "answer": "Jayden Daniels' pressure-to-sack rate was **41.2%**, ranking **40th of 43** qualifying QBs. Since lower is better, this is near the bottom of the league. [player:Jayden Daniels] [leaderboard:pressure_to_sack_percentage]",
+      "tools": [],
+      "sources": [
+        "player:Jayden Daniels",
+        "player:Gardner Minshew",
+        "player:Daniel Jones",
+        "leaderboard:pressure_to_sack_percentage"
+      ],
+      "latency_ms": 1436,
+      "usage": {
+        "input_tokens": 1575,
+        "output_tokens": 200
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "lookup-hurts-rush-lastname",
+      "category": "lookup",
+      "question": "How many rushing yards did Hurts have last season?",
+      "answer": "Jalen Hurts had **630 rushing yards** on 150 carries in the 2024 regular season, with 14 rushing TDs [player:Jalen Hurts]. The data covers only the 2024 regular season, so I can't speak to playoffs or other seasons.",
+      "tools": [],
+      "sources": [
+        "player:Jalen Hurts",
+        "player:Sam Darnold",
+        "player:Deshaun Watson",
+        "player:Justin Fields"
+      ],
+      "latency_ms": 1533,
+      "usage": {
+        "input_tokens": 1598,
+        "output_tokens": 202
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "lookup-typo-burrow-tds",
+      "category": "lookup",
+      "question": "How many passing touchdowns did Joe Burow throw?",
+      "answer": "Joe Burrow threw **43 passing touchdowns** in the 2024 regular season, across 17 games [player:Joe Burrow].",
+      "tools": [],
+      "sources": [
+        "player:Joe Flacco",
+        "player:Joe Burrow",
+        "player:Jacoby Brissett",
+        "player:Justin Herbert"
+      ],
+      "latency_ms": 1092,
+      "usage": {
+        "input_tokens": 1606,
+        "output_tokens": 120
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "compare-lamar-allen",
+      "category": "comparison",
+      "question": "According to the scoring formula, who is better: Lamar Jackson or Josh Allen?",
+      "answer": "According to the custom QB scores, **Lamar Jackson is better**, with a score of 6.86 (1st of 43) versus Josh Allen's 4.13 (2nd of 43) [player:Lamar Jackson] [player:Josh Allen]. The context does not include the scoring formula, so I can't explain which inputs drove the gap. Jackson also leads both players on passer rating (119.6 vs. 101.4) and yards per attempt (8.8 vs. 7.7) [leaderboard:passer_rating] [leaderboard:yards_per_attempt].",
+      "tools": [],
+      "sources": [
+        "player:Lamar Jackson",
+        "player:Josh Allen",
+        "leaderboard:passer_rating",
+        "leaderboard:yards_per_attempt"
+      ],
+      "latency_ms": 2391,
+      "usage": {
+        "input_tokens": 1499,
+        "output_tokens": 416
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "compare-goff-mayfield",
+      "category": "comparison",
+      "question": "Compare Jared Goff and Baker Mayfield. Who scores higher?",
+      "answer": "**Jared Goff scores higher** on the custom QB score, 0.66 (3rd of 43) versus Baker Mayfield's -1.49 (8th of 43) [player:Jared Goff][player:Baker Mayfield].\n\nGoff also leads on several other measures in the context: passer rating 111.8 vs. 106.8 [leaderboard:passer_rating], yards per attempt 8.6 vs. 7.9 [leaderboard:yards_per_attempt], and EPA per play 0.29 vs. 0.20 [player:Jared Goff][player:Baker Mayfield]. Mayfield's pressure-to-sack rate (36.4%, 32nd of 43) is much worse than Goff's (25.4%, 13th of 43) [player:Baker Mayfield][player:Jared Goff].",
+      "tools": [],
+      "sources": [
+        "player:Jared Goff",
+        "player:Baker Mayfield",
+        "leaderboard:passer_rating",
+        "leaderboard:yards_per_attempt"
+      ],
+      "latency_ms": 1883,
+      "usage": {
+        "input_tokens": 1497,
+        "output_tokens": 405
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "rank-epa-leader",
+      "category": "ranking",
+      "question": "Which quarterback led in EPA per play?",
+      "answer": "Josh Allen led the 2024 regular-season QB leaderboard in EPA per play, at 0.32 among 43 qualifying QBs [leaderboard:epa_play]. Lamar Jackson was second at 0.30 [leaderboard:epa_play].",
+      "tools": [],
+      "sources": [
+        "leaderboard:epa_play",
+        "player:Joe Flacco",
+        "player:Justin Herbert",
+        "player:Jared Goff"
+      ],
+      "latency_ms": 1422,
+      "usage": {
+        "input_tokens": 1540,
+        "output_tokens": 202
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "rank-worst-p2s",
+      "category": "ranking",
+      "question": "Which QB had the worst pressure-to-sack rate?",
+      "answer": "**Will Levis** had the worst pressure-to-sack rate in 2024, at 44.6%, ranking 43rd of 43 qualifying QBs. Caleb Williams was next-worst at 43.5% [leaderboard:pressure_to_sack_percentage].",
+      "tools": [],
+      "sources": [
+        "leaderboard:sacks_taken",
+        "player:Joe Burrow",
+        "leaderboard:pressure_to_sack_percentage",
+        "player:Joe Flacco"
+      ],
+      "latency_ms": 1713,
+      "usage": {
+        "input_tokens": 1477,
+        "output_tokens": 268
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "rank-most-tds",
+      "category": "ranking",
+      "question": "Who threw the most passing touchdowns?",
+      "answer": "**Joe Burrow** threw the most passing touchdowns in 2024, with 43, ranking first among the 43 qualifying QBs. Lamar Jackson and Baker Mayfield tied for second with 41. [leaderboard:pass_touchdowns]",
+      "tools": [],
+      "sources": [
+        "leaderboard:pass_touchdowns",
+        "leaderboard:pass_yards",
+        "player:Sam Darnold",
+        "player:Deshaun Watson"
+      ],
+      "latency_ms": 1947,
+      "usage": {
+        "input_tokens": 1451,
+        "output_tokens": 153
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "rank-deepest-adot",
+      "category": "ranking",
+      "question": "Which quarterback threw the deepest passes on average?",
+      "answer": "Among the three QBs in the context, **Jalen Hurts** threw the deepest passes, with an average depth of target of 7.8 (20th of 43) [player:Jalen Hurts]. Mason Rudolph was next at 7.0 (32nd of 43) [player:Mason Rudolph], and Jacoby Brissett was lowest at 6.4 (38th of 43) [player:Jacoby Brissett].\n\nThe context doesn't include the QBs ranked above Hurts, so I can't say who had the deepest average overall.",
+      "tools": [],
+      "sources": [
+        "player:Jalen Hurts",
+        "leaderboard:pass_yards",
+        "player:Mason Rudolph",
+        "player:Jacoby Brissett"
+      ],
+      "latency_ms": 2384,
+      "usage": {
+        "input_tokens": 1543,
+        "output_tokens": 387
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": false,
+      "missing": [
+        "Anthony Richardson",
+        "12.2"
+      ],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "rank-best-cpoe",
+      "category": "ranking",
+      "question": "Who had the best completion percentage over expected?",
+      "answer": "Jalen Hurts had the best completion percentage over expected in 2024, at +6.3, per the CPOE leaderboard among 43 qualifying QBs [leaderboard:completion_percentage_above_expectation]. Jared Goff was second at +5.1 [leaderboard:completion_percentage_above_expectation].",
+      "tools": [],
+      "sources": [
+        "leaderboard:avg_depth_of_target",
+        "leaderboard:completion_percentage_above_expectation",
+        "leaderboard:yards_per_attempt",
+        "leaderboard:bad_throw_pct_average"
+      ],
+      "latency_ms": 1093,
+      "usage": {
+        "input_tokens": 1413,
+        "output_tokens": 109
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "method-epa-weight",
+      "category": "methodology",
+      "question": "How much weight does EPA per play get in the QB score?",
+      "answer": "EPA per play carries **25%** of the custom QB score, and it is scaled by 30 in the calculation. This is the largest single weight in the formula. [methodology:score]",
+      "tools": [],
+      "sources": [
+        "methodology:score",
+        "player:Justin Herbert",
+        "player:Brock Purdy",
+        "player:Joe Flacco"
+      ],
+      "latency_ms": 1233,
+      "usage": {
+        "input_tokens": 1550,
+        "output_tokens": 93
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "method-yards-baseline",
+      "category": "methodology",
+      "question": "What yards-per-game baseline does the scoring formula use?",
+      "answer": "The scoring formula uses a **250-yard baseline** for yards per game, weighted at 15% of the score [methodology:score].",
+      "tools": [],
+      "sources": [
+        "methodology:score",
+        "player:Bo Nix",
+        "player:Justin Fields",
+        "player:Anthony Richardson"
+      ],
+      "latency_ms": 1133,
+      "usage": {
+        "input_tokens": 1550,
+        "output_tokens": 87
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "oos-brady",
+      "category": "out_of_scope",
+      "question": "How many touchdowns did Tom Brady throw in 2024?",
+      "answer": "The provided context doesn't include Tom Brady. He isn't listed among the 43 qualifying 2024 QBs on the passing touchdowns leaderboard [leaderboard:pass_touchdowns], and no player summary covers him, so I can't give his 2024 touchdown total.",
+      "tools": [],
+      "sources": [
+        "leaderboard:pass_touchdowns",
+        "player:Joe Flacco",
+        "player:Aaron Rodgers",
+        "player:Baker Mayfield"
+      ],
+      "latency_ms": 1938,
+      "usage": {
+        "input_tokens": 1529,
+        "output_tokens": 246
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "oos-playoffs",
+      "category": "out_of_scope",
+      "question": "What was Patrick Mahomes' passer rating in the 2024 playoffs?",
+      "answer": "The provided data covers only the 2024 regular season, so I can't report Patrick Mahomes' 2024 playoff passer rating. His regular-season passer rating was 93.5 over 16 games [player:Patrick Mahomes].",
+      "tools": [],
+      "sources": [
+        "player:Patrick Mahomes",
+        "player:Brock Purdy",
+        "player:Drake Maye",
+        "player:Aidan O'Connell"
+      ],
+      "latency_ms": 1328,
+      "usage": {
+        "input_tokens": 1613,
+        "output_tokens": 134
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_only",
+      "id": "oos-receiver",
+      "category": "out_of_scope",
+      "question": "Who had the most receiving yards in 2024?",
+      "answer": "The provided context doesn't include receiving yard data, so I can't say who had the most receiving yards in 2024. The documents cover only QB passing yards, passing touchdowns, rushing yards, and one QB summary (Geno Smith). To answer this, I'd need a receiving leaderboard or player-level receiving stats.",
+      "tools": [],
+      "sources": [
+        "leaderboard:pass_yards",
+        "leaderboard:pass_touchdowns",
+        "leaderboard:rush_yards",
+        "player:Geno Smith"
+      ],
+      "latency_ms": 1843,
+      "usage": {
+        "input_tokens": 1360,
+        "output_tokens": 219
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_tools",
+      "id": "lookup-burrow-yards",
+      "category": "lookup",
+      "question": "How many passing yards did Joe Burrow have in 2024?",
+      "answer": "Joe Burrow threw for **4,918 passing yards** in the 2024 regular season, across 17 games and 652 attempts. [player:Joe Burrow] [tool:get_player_stats]",
+      "tools": [
+        "get_player_stats"
+      ],
+      "sources": [
+        "player:Joe Burrow",
+        "player:Joe Flacco",
+        "player:Cooper Rush",
+        "player:Mason Rudolph"
+      ],
+      "latency_ms": 2147,
+      "usage": {
+        "input_tokens": 6146,
+        "output_tokens": 188
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "lookup-lamar-rating",
+      "category": "lookup",
+      "question": "What was Lamar Jackson's passer rating in 2024?",
+      "answer": "Lamar Jackson's 2024 passer rating was **119.6** (119.63 unrounded), the best among the 43 qualifying QBs. He threw 41 TD passes and 4 interceptions in 474 attempts over 17 games. [tool:get_player_stats] [leaderboard:passer_rating]",
+      "tools": [
+        "get_player_stats"
+      ],
+      "sources": [
+        "player:Lamar Jackson",
+        "player:Drake Maye",
+        "leaderboard:passer_rating",
+        "player:Josh Allen"
+      ],
+      "latency_ms": 2255,
+      "usage": {
+        "input_tokens": 6039,
+        "output_tokens": 242
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "lookup-daniels-p2s",
+      "category": "lookup",
+      "question": "What was Jayden Daniels' pressure-to-sack rate?",
+      "answer": "Jayden Daniels' pressure-to-sack rate in 2024 was 41.2%, which ranks 40th of 43 qualifying QBs (lower is better) [player:Jayden Daniels] [tool:get_player_stats]. That was the 40th-worst mark in the league, and it cost him 2.31 points in his custom score.",
+      "tools": [
+        "get_player_stats"
+      ],
+      "sources": [
+        "player:Jayden Daniels",
+        "player:Gardner Minshew",
+        "player:Daniel Jones",
+        "leaderboard:pressure_to_sack_percentage"
+      ],
+      "latency_ms": 2455,
+      "usage": {
+        "input_tokens": 6135,
+        "output_tokens": 286
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "lookup-hurts-rush-lastname",
+      "category": "lookup",
+      "question": "How many rushing yards did Hurts have last season?",
+      "answer": "Jalen Hurts had **630 rushing yards** in 2024 on 150 carries, with 14 rushing touchdowns over 15 games [player:Jalen Hurts; tool:get_player_stats].",
+      "tools": [
+        "get_player_stats"
+      ],
+      "sources": [
+        "player:Jalen Hurts",
+        "player:Sam Darnold",
+        "player:Deshaun Watson",
+        "player:Justin Fields"
+      ],
+      "latency_ms": 2049,
+      "usage": {
+        "input_tokens": 6152,
+        "output_tokens": 214
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "lookup-typo-burrow-tds",
+      "category": "lookup",
+      "question": "How many passing touchdowns did Joe Burow throw?",
+      "answer": "Joe Burrow threw **43 passing touchdowns** in the 2024 regular season, across 17 games. [tool:get_player_stats]\n\nI'm assuming \"Joe Burow\" refers to Joe Burrow, the only QB by that name in the data.",
+      "tools": [
+        "get_player_stats"
+      ],
+      "sources": [
+        "player:Joe Flacco",
+        "player:Joe Burrow",
+        "player:Jacoby Brissett",
+        "player:Justin Herbert"
+      ],
+      "latency_ms": 2257,
+      "usage": {
+        "input_tokens": 6171,
+        "output_tokens": 234
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "compare-lamar-allen",
+      "category": "comparison",
+      "question": "According to the scoring formula, who is better: Lamar Jackson or Josh Allen?",
+      "answer": "According to Adam Clark's scoring formula, Lamar Jackson is better, 6.86 to 4.13 for Josh Allen, a margin of 2.73 [tool:compare_qbs].\n\n- **Yards per game vs. 250 baseline:** Jackson gets 2.46 points to Allen's 1.23 more, favoring Jackson by about 2.46 points and driving most of the gap.\n- **Time to throw vs. 2.5s baseline:** Jackson gets 1.29 points to Allen's 0.76 more, favoring Jackson (1.29 points).\n- **Sacks taken (penalty):** Allen takes the smaller penalty (-1.4 vs. -2.3), which favors Allen by 0.9 points, the largest offset.\n\nAllen's edges are small: EPA per play (0.32 vs. 0.30) and completion percentage over expected (+0.8 vs. -0.2). [tool:compare_qbs]",
+      "tools": [
+        "compare_qbs"
+      ],
+      "sources": [
+        "player:Lamar Jackson",
+        "player:Josh Allen",
+        "leaderboard:passer_rating",
+        "leaderboard:yards_per_attempt"
+      ],
+      "latency_ms": 3169,
+      "usage": {
+        "input_tokens": 6609,
+        "output_tokens": 482
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "compare-goff-mayfield",
+      "category": "comparison",
+      "question": "Compare Jared Goff and Baker Mayfield. Who scores higher?",
+      "answer": "Jared Goff scores higher: 0.66 versus -1.49 for Baker Mayfield, a margin of 2.15 [tool:compare_qbs].\n\nThe biggest drivers were:\n- **Turnovers (0.90 points, favors Goff):** Goff had 12 interceptions and 0 fumbles lost, against Mayfield's 16 interceptions and 2 fumbles lost [tool:compare_qbs].\n- **Sacks taken (0.90 points, favors Goff):** Goff took 31 sacks to Mayfield's 40 [tool:compare_qbs].\n- **Yards (0.85 points, favors Mayfield):** Mayfield's yardage per game was the one component that favored him, though it didn't close the gap.\n\nGoff also led on EPA per play (0.29 vs. 0.20) and pressure-to-sack rate (25.4% vs. 36.4%) [tool:compare_qbs].",
+      "tools": [
+        "compare_qbs"
+      ],
+      "sources": [
+        "player:Jared Goff",
+        "player:Baker Mayfield",
+        "leaderboard:passer_rating",
+        "leaderboard:yards_per_attempt"
+      ],
+      "latency_ms": 2871,
+      "usage": {
+        "input_tokens": 6568,
+        "output_tokens": 444
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "rank-epa-leader",
+      "category": "ranking",
+      "question": "Which quarterback led in EPA per play?",
+      "answer": "Josh Allen led the 2024 QBs in EPA per play at 0.32, ahead of Lamar Jackson (0.30) and Jared Goff (0.29). [tool:rank_qbs]",
+      "tools": [
+        "rank_qbs"
+      ],
+      "sources": [
+        "leaderboard:epa_play",
+        "player:Joe Flacco",
+        "player:Justin Herbert",
+        "player:Jared Goff"
+      ],
+      "latency_ms": 2023,
+      "usage": {
+        "input_tokens": 5727,
+        "output_tokens": 236
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "rank-worst-p2s",
+      "category": "ranking",
+      "question": "Which QB had the worst pressure-to-sack rate?",
+      "answer": "Will Levis had the worst pressure-to-sack rate among the 43 qualifying QBs in 2024, at 44.6% (ranked 43rd, where lower is better). Caleb Williams was second-worst at 43.5%, followed by Jalen Hurts at 41.8%. [tool:rank_qbs]",
+      "tools": [
+        "rank_qbs"
+      ],
+      "sources": [
+        "leaderboard:sacks_taken",
+        "player:Joe Burrow",
+        "leaderboard:pressure_to_sack_percentage",
+        "player:Joe Flacco"
+      ],
+      "latency_ms": 2683,
+      "usage": {
+        "input_tokens": 5744,
+        "output_tokens": 399
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "rank-most-tds",
+      "category": "ranking",
+      "question": "Who threw the most passing touchdowns?",
+      "answer": "Joe Burrow threw the most passing touchdowns in 2024 with 43, ahead of Lamar Jackson and Baker Mayfield (41 each) [tool:rank_qbs].",
+      "tools": [
+        "rank_qbs"
+      ],
+      "sources": [
+        "leaderboard:pass_touchdowns",
+        "leaderboard:pass_yards",
+        "player:Sam Darnold",
+        "player:Deshaun Watson"
+      ],
+      "latency_ms": 2457,
+      "usage": {
+        "input_tokens": 5607,
+        "output_tokens": 287
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "rank-deepest-adot",
+      "category": "ranking",
+      "question": "Which quarterback threw the deepest passes on average?",
+      "answer": "Anthony Richardson threw the deepest passes on average in 2024, at 12.2 yards per target, ahead of Trevor Lawrence (9.3) and Jameis Winston (8.9) [tool:rank_qbs].\n\nAmong the three QBs in the scouting summaries, Jalen Hurts was deepest at 7.8 yards, ranking 20th of 43. Mason Rudolph was next at 7.0 (32nd), then Jacoby Brissett at 6.4 (38th) [player:Jalen Hurts][player:Mason Rudolph][player:Jacoby Brissett].",
+      "tools": [
+        "rank_qbs"
+      ],
+      "sources": [
+        "player:Jalen Hurts",
+        "leaderboard:pass_yards",
+        "player:Mason Rudolph",
+        "player:Jacoby Brissett"
+      ],
+      "latency_ms": 3996,
+      "usage": {
+        "input_tokens": 5887,
+        "output_tokens": 567
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "rank-best-cpoe",
+      "category": "ranking",
+      "question": "Who had the best completion percentage over expected?",
+      "answer": "Jalen Hurts had the best completion percentage over expected in 2024, at +6.3. Jared Goff (+5.1) and Joe Burrow (+4.5) were next. [tool:rank_qbs] [leaderboard:completion_percentage_above_expectation]",
+      "tools": [
+        "rank_qbs"
+      ],
+      "sources": [
+        "leaderboard:avg_depth_of_target",
+        "leaderboard:completion_percentage_above_expectation",
+        "leaderboard:yards_per_attempt",
+        "leaderboard:bad_throw_pct_average"
+      ],
+      "latency_ms": 2455,
+      "usage": {
+        "input_tokens": 5512,
+        "output_tokens": 281
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": true
+    },
+    {
+      "mode": "rag_tools",
+      "id": "method-epa-weight",
+      "category": "methodology",
+      "question": "How much weight does EPA per play get in the QB score?",
+      "answer": "EPA per play carries a **25% weight**, the largest share of the custom QB score, and its value is scaled by 30 before being applied [methodology:score]. For comparison, touchdowns per attempt are next at 20%, and yards per game, turnover component, and pressure-to-sack rate are each 15%.",
+      "tools": [],
+      "sources": [
+        "methodology:score",
+        "player:Justin Herbert",
+        "player:Brock Purdy",
+        "player:Joe Flacco"
+      ],
+      "latency_ms": 2254,
+      "usage": {
+        "input_tokens": 2723,
+        "output_tokens": 376
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_tools",
+      "id": "method-yards-baseline",
+      "category": "methodology",
+      "question": "What yards-per-game baseline does the scoring formula use?",
+      "answer": "The scoring formula uses a **250-yard per-game baseline**. It credits yards per game above that line at 15% of the score. [methodology:score]",
+      "tools": [],
+      "sources": [
+        "methodology:score",
+        "player:Bo Nix",
+        "player:Justin Fields",
+        "player:Anthony Richardson"
+      ],
+      "latency_ms": 1329,
+      "usage": {
+        "input_tokens": 2723,
+        "output_tokens": 96
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_tools",
+      "id": "oos-brady",
+      "category": "out_of_scope",
+      "question": "How many touchdowns did Tom Brady throw in 2024?",
+      "answer": "The data doesn't include Tom Brady's 2024 touchdowns. He isn't among the 43 qualifying 2024 QBs (minimum 100 attempts), and the lookup returned no 2024 record for him [tool:get_player_stats]. The touchdown leaderboard also doesn't list him [leaderboard:pass_touchdowns]. I can't give a number for him from this dataset.",
+      "tools": [
+        "get_player_stats"
+      ],
+      "sources": [
+        "leaderboard:pass_touchdowns",
+        "player:Joe Flacco",
+        "player:Aaron Rodgers",
+        "player:Baker Mayfield"
+      ],
+      "latency_ms": 2868,
+      "usage": {
+        "input_tokens": 5726,
+        "output_tokens": 375
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_tools",
+      "id": "oos-playoffs",
+      "category": "out_of_scope",
+      "question": "What was Patrick Mahomes' passer rating in the 2024 playoffs?",
+      "answer": "The data doesn't cover 2024 playoffs, so I can't give Mahomes' playoff passer rating. The scouting data covers only the 2024 regular season. For that period, his passer rating was 93.5 [player:Patrick Mahomes].",
+      "tools": [],
+      "sources": [
+        "player:Patrick Mahomes",
+        "player:Brock Purdy",
+        "player:Drake Maye",
+        "player:Aidan O'Connell"
+      ],
+      "latency_ms": 1787,
+      "usage": {
+        "input_tokens": 2786,
+        "output_tokens": 212
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_tools",
+      "id": "oos-receiver",
+      "category": "out_of_scope",
+      "question": "Who had the most receiving yards in 2024?",
+      "answer": "I can't answer that from the available data. The scouting materials cover only quarterbacks (passing, rushing, efficiency, and pressure stats), with no receiving stats for wide receivers, tight ends, or running backs. The search for receiving leaders returned only QB leaderboards [tool:search_scouting_docs].",
+      "tools": [
+        "search_scouting_docs"
+      ],
+      "sources": [
+        "leaderboard:pass_yards",
+        "leaderboard:pass_touchdowns",
+        "leaderboard:rush_yards",
+        "player:Geno Smith"
+      ],
+      "latency_ms": 3132,
+      "usage": {
+        "input_tokens": 6428,
+        "output_tokens": 363
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": true,
+      "missing": [],
+      "forbidden_found": [],
+      "any_of_ok": true,
+      "tool_ok": null
+    }
+  ]
+}

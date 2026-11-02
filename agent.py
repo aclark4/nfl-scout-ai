@@ -23,14 +23,22 @@ from tools import TOOL_SCHEMAS, StatsStore, execute_tool, to_json
 DEFAULT_MODEL = os.getenv("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_TOOL_ROUNDS = 5
 
-SYSTEM_PROMPT = """You are an NFL scouting assistant covering 2024 regular-season quarterbacks.
+BASE_RULES = """You are an NFL scouting assistant covering 2024 regular-season quarterbacks.
 
 Rules:
-- Answer only from the provided context and tool results. Never use outside knowledge for stats.
-- For any specific number, comparison, or ranking, call a tool (get_player_stats, compare_qbs, rank_qbs) rather than estimating.
-- When asked who is "better", use compare_qbs. Explain the result with its "breakdown": name the 2-3 components with the largest "points" and who they favor, plus any notable edge for the other QB.
+- Answer only from the provided context{tool_clause}. Never use outside knowledge for stats.
 - If the data does not cover something (other seasons, playoffs, non-QBs, QBs under 100 attempts), say so plainly.
-- Keep answers concise: 2-5 sentences or a short list. Cite sources in brackets, e.g. [player:Joe Burrow] or [tool:compare_qbs]."""
+- Keep answers concise: 2-5 sentences or a short list. Cite sources in brackets, e.g. [player:Joe Burrow]{tool_cite}."""
+
+TOOL_RULES = """
+- For any specific number, comparison, or ranking, call a tool (get_player_stats, compare_qbs, rank_qbs) rather than estimating.
+- When asked who is "better", use compare_qbs. Explain the result with its "breakdown": name the 2-3 components with the largest "points" and who they favor, plus any notable edge for the other QB."""
+
+NO_TOOL_RULES = """
+- Use only numbers that appear in the context documents. If the context is not enough to answer, say what is missing."""
+
+SYSTEM_PROMPT = BASE_RULES.format(tool_clause=" and tool results", tool_cite=" or [tool:compare_qbs]") + TOOL_RULES
+SYSTEM_PROMPT_NO_TOOLS = BASE_RULES.format(tool_clause="", tool_cite="") + NO_TOOL_RULES
 
 
 class ScoutAgent:
@@ -65,7 +73,8 @@ class ScoutAgent:
 
         tools_used: list[dict[str, Any]] = []
         usage = {"input_tokens": 0, "output_tokens": 0}
-        request = {"model": self.model, "max_tokens": 1024, "system": SYSTEM_PROMPT}
+        system = SYSTEM_PROMPT if self.use_tools else SYSTEM_PROMPT_NO_TOOLS
+        request = {"model": self.model, "max_tokens": 1024, "system": system}
         if self.use_tools:
             request["tools"] = TOOL_SCHEMAS
 

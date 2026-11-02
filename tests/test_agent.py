@@ -140,6 +140,7 @@ def test_agent_without_tools_is_plain_rag(store):
     agent = ScoutAgent(retriever=FakeRetriever(), store=store, client=client, use_tools=False)
     agent.ask("How did Burrow play?")
     assert "tools" not in client.requests[0]
+    assert "compare_qbs" not in client.requests[0]["system"]  # no tool instructions without tools
 
 
 def test_agent_stops_after_round_limit(store):

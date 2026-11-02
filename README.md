@@ -139,7 +139,7 @@ python eval/run_eval.py    # live evaluation, writes eval/results/latest.md
 
 ## Built with AI assistance
 
-I used Claude as a pair programmer throughout: refactoring my original CLI into an importable, testable module, generating unit tests with mock data, scaffolding the retrieval and agent layers, and debugging. Every change was reviewed and validated against the real data and the live API, and several of the findings above (the thinking-block bug, the unfair baseline prompt, the formula's durability bias) came from checking AI-generated work against real results.
+I used Claude as a pair programmer throughout: refactoring my original CLI into an importable, testable module, generating unit tests with mock data, scaffolding the retrieval and agent layers, and debugging. Every change was reviewed and validated against the real data and the live API, and several of the findings above (the unexpected content-block bug, the unfair baseline prompt, the formula's durability bias) came from checking AI-generated work against real results.
 
 ## Data
 

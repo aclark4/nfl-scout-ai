@@ -125,7 +125,7 @@ def summarize(results: dict) -> str:
     categories = list(dict.fromkeys(r["category"] for r in rows))
     has_cost = any(r["cost_usd"] is not None for r in rows)
 
-    lines = [f"## Evaluation results", "",
+    lines = ["## Evaluation results", "",
              f"Model: `{results['model']}` · Run: {results['run_at']} · "
              f"{len(rows) // max(len(modes), 1)} questions per mode", ""]
 

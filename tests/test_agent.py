@@ -155,7 +155,7 @@ def test_agent_stops_after_round_limit(store):
 # ---------------------------------------------------------------- API
 
 def test_api_ask_health_and_players(store, tmp_path, monkeypatch):
-    fastapi = pytest.importorskip("fastapi")
+    pytest.importorskip("fastapi")
     from fastapi.testclient import TestClient
 
     import app as app_module

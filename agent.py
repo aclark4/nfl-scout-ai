@@ -97,8 +97,7 @@ class ScoutAgent:
                 tools_used.append({"name": block.name, "input": block.input, "error": result.get("error")})
                 results.append({"type": "tool_result", "tool_use_id": block.id, "content": to_json(result)})
             messages.append({"role": "user", "content": results})
-        else:
-            pass  # hit the round limit; fall through with the last response
+        # If the round limit is hit, the last response (a tool call) has no text and the fallback below applies
 
         answer = "".join(getattr(b, "text", "") for b in response.content if b.type == "text").strip()
         if not answer:

@@ -1,0 +1,9 @@
+nfl_data_py
+pandas
+pytest
+chromadb
+anthropic
+fastapi
+uvicorn
+python-dotenv
+httpx

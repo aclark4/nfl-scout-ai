@@ -15,6 +15,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import build_stats  # noqa: E402
 from qb_stats import (  # noqa: E402
     compare_qbs,
+    score_breakdown,
+    score_components,
     format_name_pbp_passer,
     generate_qb_score,
     get_qb_stats,
@@ -142,3 +144,20 @@ def test_build_writes_ranked_json(data, tmp_path, monkeypatch):
 
 def test_min_attempts_filter(data):
     assert build_stats.qualifying_qbs(data, 200) == ["Joe Burrow"]
+
+
+def test_components_sum_to_score(data):
+    stats = get_qb_stats("Joe Burrow", data)
+    assert round(sum(score_components(stats).values()), 2) == generate_qb_score(stats)
+    assert set(score_breakdown(stats)) == set(score_components(stats))
+
+
+def test_compare_breakdown_explains_margin(data):
+    a, b = get_qb_stats("Joe Burrow", data), get_qb_stats("Michael Penix Jr.", data)
+    result = compare_qbs(a, b)
+    points = [e["points"] for e in result["breakdown"]]
+    assert points == sorted(points, reverse=True)
+    net = sum(e[a["name"]] - e[b["name"]] for e in result["breakdown"])
+    assert abs(abs(net) - result["margin"]) < 0.05
+    top = result["breakdown"][0]
+    assert top["favors"] in (a["name"], b["name"])

@@ -202,8 +202,21 @@ def get_qb_stats(qb_name: str, data: dict[str, pd.DataFrame]) -> Optional[dict[s
 # Scoring (Adam Clark's weighted formula)
 # ---------------------------------------------------------------------------
 
-def generate_qb_score(stats: dict[str, Any]) -> float:
-    """Score a QB's season with a weighted multi-metric formula. Higher is better."""
+COMPONENT_LABELS = {
+    "yards": "Total yards per game vs. 250 baseline",
+    "touchdowns": "Touchdowns per play",
+    "turnovers": "Turnover luck, INTs and fumbles",
+    "aggressiveness": "Aggressiveness x depth of target",
+    "epa": "EPA per play",
+    "time_to_throw": "Time to throw vs. 2.5s baseline",
+    "pressure_to_sack": "Pressure-to-sack rate (penalty)",
+    "sacks": "Sacks taken (penalty)",
+    "cpoe": "Completion % over expected",
+}
+
+
+def score_components(stats: dict[str, Any]) -> dict[str, float]:
+    """Weighted points each part of the formula contributes. They sum to the score."""
     total_yards = stats["pass_yards"] + stats["rush_yards"]
     # 250 total yards is roughly an average game in 2024
     yards_score = (safe_div(total_yards, stats["games_played"]) - 250) / 2
@@ -233,29 +246,58 @@ def generate_qb_score(stats: dict[str, Any]) -> float:
 
     pressure_to_sack_score = safe_div(stats["pressure_to_sack_percentage"], stats["avg_time_to_throw"])
 
-    score = (
-        yards_score * 0.15
-        + touchdown_score * 0.2
-        + turnover_score * 0.15
-        + aggressiveness_score * 0.05
-        + (stats["epa_play"] * 30) * 0.25
-        + time_to_throw_score * 0.05
-        - pressure_to_sack_score * 0.15  # higher pressure-to-sack rate is worse
-        - stats["sacks_taken"] * 0.1
-        + stats["completion_percentage_above_expectation"] * 0.1
-    )
-    return round(score, 2)
+    return {
+        "yards": yards_score * 0.15,
+        "touchdowns": touchdown_score * 0.2,
+        "turnovers": turnover_score * 0.15,
+        "aggressiveness": aggressiveness_score * 0.05,
+        "epa": (stats["epa_play"] * 30) * 0.25,
+        "time_to_throw": time_to_throw_score * 0.05,
+        "pressure_to_sack": -pressure_to_sack_score * 0.15,  # higher rate is worse
+        "sacks": -stats["sacks_taken"] * 0.1,
+        "cpoe": stats["completion_percentage_above_expectation"] * 0.1,
+    }
+
+
+def generate_qb_score(stats: dict[str, Any]) -> float:
+    """Score a QB's season with a weighted multi-metric formula. Higher is better."""
+    return round(sum(score_components(stats).values()), 2)
+
+
+def score_breakdown(stats: dict[str, Any]) -> dict[str, float]:
+    """Rounded per-component points, for display and for the AI agent."""
+    return {key: round(value, 2) for key, value in score_components(stats).items()}
 
 
 def compare_qbs(stats_a: dict[str, Any], stats_b: dict[str, Any]) -> dict[str, Any]:
-    """Score two QBs and report the winner. Used by the CLI and the AI agent tool."""
+    """Score two QBs, report the winner, and explain which components drove the gap."""
+    name_a, name_b = stats_a["name"], stats_b["name"]
     score_a, score_b = generate_qb_score(stats_a), generate_qb_score(stats_b)
     if score_a == score_b:
         winner = None
     else:
-        winner = stats_a["name"] if score_a > score_b else stats_b["name"]
+        winner = name_a if score_a > score_b else name_b
+
+    parts_a, parts_b = score_components(stats_a), score_components(stats_b)
+    # Positive edge = component favors QB A; sorted by how much it moved the result
+    edges = sorted(
+        (
+            {
+                "component": key,
+                "label": COMPONENT_LABELS[key],
+                name_a: round(parts_a[key], 2),
+                name_b: round(parts_b[key], 2),
+                "favors": name_a if parts_a[key] > parts_b[key] else name_b if parts_b[key] > parts_a[key] else None,
+                "points": round(abs(parts_a[key] - parts_b[key]), 2),
+            }
+            for key in parts_a
+        ),
+        key=lambda e: e["points"],
+        reverse=True,
+    )
     return {
-        "scores": {stats_a["name"]: score_a, stats_b["name"]: score_b},
+        "scores": {name_a: score_a, name_b: score_b},
         "winner": winner,
         "margin": round(abs(score_a - score_b), 2),
+        "breakdown": edges,
     }

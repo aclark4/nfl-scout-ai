@@ -28,18 +28,9 @@ SYSTEM_PROMPT = """You are an NFL scouting assistant covering 2024 regular-seaso
 Rules:
 - Answer only from the provided context and tool results. Never use outside knowledge for stats.
 - For any specific number, comparison, or ranking, call a tool (get_player_stats, compare_qbs, rank_qbs) rather than estimating.
-- When asked who is "better", use compare_qbs, explain the custom score, and mention the key stats behind it.
+- When asked who is "better", use compare_qbs. Explain the result with its "breakdown": name the 2-3 components with the largest "points" and who they favor, plus any notable edge for the other QB.
 - If the data does not cover something (other seasons, playoffs, non-QBs, QBs under 100 attempts), say so plainly.
 - Keep answers concise: 2-5 sentences or a short list. Cite sources in brackets, e.g. [player:Joe Burrow] or [tool:compare_qbs]."""
-
-
-def _block_to_dict(block: Any) -> dict[str, Any]:
-    """Convert an SDK content block to a plain dict for the next request."""
-    if block.type == "text":
-        return {"type": "text", "text": block.text}
-    if block.type == "tool_use":
-        return {"type": "tool_use", "id": block.id, "name": block.name, "input": block.input}
-    raise ValueError(f"Unexpected content block type: {block.type}")
 
 
 class ScoutAgent:
@@ -86,7 +77,9 @@ class ScoutAgent:
             if response.stop_reason != "tool_use":
                 break
 
-            messages.append({"role": "assistant", "content": [_block_to_dict(b) for b in response.content]})
+            # Send Claude's blocks back unchanged (text, tool_use, and any thinking blocks,
+            # which the API requires to be returned as-is during tool use).
+            messages.append({"role": "assistant", "content": response.content})
             results = []
             for block in response.content:
                 if block.type != "tool_use":
@@ -98,7 +91,7 @@ class ScoutAgent:
         else:
             pass  # hit the round limit; fall through with the last response
 
-        answer = "".join(b.text for b in response.content if b.type == "text").strip()
+        answer = "".join(getattr(b, "text", "") for b in response.content if b.type == "text").strip()
         if not answer:
             answer = "Sorry, I couldn't produce an answer within the tool-call limit."
 

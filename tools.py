@@ -13,7 +13,7 @@ import json
 from typing import Any, Optional
 
 from documents import DEFAULT_STATS_PATH, METRICS, load_stats
-from qb_stats import compare_qbs
+from qb_stats import compare_qbs, score_breakdown
 
 TOOL_SCHEMAS = [
     {
@@ -33,7 +33,7 @@ TOOL_SCHEMAS = [
     },
     {
         "name": "get_player_stats",
-        "description": "Exact 2024 regular-season stats, custom score, and overall rank for one QB.",
+        "description": "Exact 2024 regular-season stats, custom score, overall rank, and per-component score breakdown for one QB.",
         "input_schema": {
             "type": "object",
             "properties": {"name": {"type": "string", "description": "QB name, e.g. 'Joe Burrow' or 'Burrow'"}},
@@ -44,7 +44,7 @@ TOOL_SCHEMAS = [
         "name": "compare_qbs",
         "description": (
             "Compare two QBs with Adam Clark's weighted scoring formula. Returns both scores, "
-            "the winner, the margin, and side-by-side key stats."
+            "the winner, the margin, side-by-side key stats, and a breakdown of which formula components drove the gap."
         ),
         "input_schema": {
             "type": "object",
@@ -114,7 +114,9 @@ class StatsStore:
 
     def get_player_stats(self, name: str) -> dict[str, Any]:
         player = self.find(name)
-        return dict(player) if player else self.not_found(name)
+        if player is None:
+            return self.not_found(name)
+        return {**player, "score_breakdown": score_breakdown(player)}
 
     def compare(self, qb_a: str, qb_b: str) -> dict[str, Any]:
         a, b = self.find(qb_a), self.find(qb_b)

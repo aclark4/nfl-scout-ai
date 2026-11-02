@@ -63,6 +63,8 @@ def test_compare_includes_winner_and_key_stats(store):
     result = execute_tool("compare_qbs", {"qb_a": "Burrow", "qb_b": "Josh Allen"}, store)
     assert result["winner"] in ("Joe Burrow", "Josh Allen")
     assert set(result["key_stats"]) == {"Joe Burrow", "Josh Allen"}
+    assert result["breakdown"] and "label" in result["breakdown"][0]
+    assert "score_breakdown" in store.get_player_stats("Burrow")
 
 
 def test_rank_respects_direction(store):

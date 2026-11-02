@@ -1,0 +1,9 @@
+.env
+.git
+.DS_Store
+__pycache__/
+.pytest_cache/
+data/chroma/
+logs/
+eval/
+tests/

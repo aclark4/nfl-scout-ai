@@ -35,6 +35,7 @@ METRICS: dict[str, tuple[str, bool, str]] = {
     "rush_yards": ("Rushing yards", True, "{:,.0f}"),
     "rush_touchdowns": ("Rushing touchdowns", True, "{:.0f}"),
     "sacks_taken": ("Sacks taken", False, "{:.0f}"),
+    "sack_rate": ("Sack rate", False, "{:.2f}")
 }
 
 # Metrics whose league rank is called out in each player summary
@@ -62,7 +63,10 @@ METHODOLOGY_TEXT = (
 
 
 def load_stats(path: Path = DEFAULT_STATS_PATH) -> dict[str, Any]:
-    return json.loads(Path(path).read_text())
+    stats = json.loads(Path(path).read_text())
+    for player in stats["players"]:
+        player["sack_rate"] = player["sacks_taken"] /(player["sacks_taken"] + player["pass_attempts"]) * 100
+    return stats
 
 
 def fmt(key: str, value: Any) -> str:

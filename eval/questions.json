@@ -22,6 +22,9 @@
    "question": "Compare Jared Goff and Baker Mayfield. Who scores higher?",
    "must_include": ["Goff", "0.66", "-1.49"], "expected_tool": "compare_qbs"},
 
+   {"id": "sack-avoidance", "category": "ranking",
+  "question": "Who avoided sacks the best?",
+  "must_include": ["Derek Carr"], "must_not_include": ["Andy Dalton"], "expected_tool": "rank_qbs"},
   {"id": "rank-epa-leader", "category": "ranking",
    "question": "Which quarterback led in EPA per play?",
    "must_include": ["Josh Allen", "0.32"], "expected_tool": "rank_qbs"},
@@ -58,4 +61,5 @@
    "any_of": ["quarterback", "QB", "doesn't cover", "does not cover", "don't have", "do not have",
               "not available", "can't", "cannot", "only covers", "only includes"],
    "must_not_include": ["Ja'Marr Chase"]}
+
 ]

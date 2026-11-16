@@ -1,0 +1,64 @@
+{
+  "model": "claude-haiku-5-5",
+  "run_at": "2026-11-16T12:14:25",
+  "rows": [
+    {
+      "mode": "rag_only",
+      "id": "sack-avoidance",
+      "category": "ranking",
+      "question": "Who avoided sacks the best?",
+      "answer": "**Andy Dalton** took the fewest sacks among the 43 qualifying 2024 QBs, with 7 [leaderboard:sacks_taken]. Derek Carr was next with 8 [leaderboard:sacks_taken]. These are raw totals, and the leaderboard doesn't include dropback or attempt counts, so it can't show sack rate.",
+      "tools": [],
+      "sources": [
+        "leaderboard:sacks_taken",
+        "leaderboard:rush_yards",
+        "leaderboard:rush_touchdowns",
+        "leaderboard:yards_per_attempt"
+      ],
+      "latency_ms": 2353,
+      "usage": {
+        "input_tokens": 1271,
+        "output_tokens": 285
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": false,
+      "missing": [],
+      "forbidden_found": [
+        "Andy Dalton"
+      ],
+      "any_of_ok": true,
+      "tool_ok": null
+    },
+    {
+      "mode": "rag_tools",
+      "id": "sack-avoidance",
+      "category": "ranking",
+      "question": "Who avoided sacks the best?",
+      "answer": "Andy Dalton avoided sacks the best among 2024 qualifiers, taking 7 sacks, the fewest of the 43 QBs. Derek Carr was second with 8, and Aidan O'Connell third with 10. [tool:rank_qbs]\n\nNote that this is a raw sack count, not a rate, so it doesn't account for how often each QB dropped back.",
+      "tools": [
+        "rank_qbs"
+      ],
+      "sources": [
+        "leaderboard:sacks_taken",
+        "leaderboard:rush_yards",
+        "leaderboard:rush_touchdowns",
+        "leaderboard:yards_per_attempt"
+      ],
+      "latency_ms": 2431,
+      "usage": {
+        "input_tokens": 5230,
+        "output_tokens": 327
+      },
+      "cost_usd": null,
+      "error": null,
+      "correct": false,
+      "missing": [],
+      "forbidden_found": [
+        "Andy Dalton"
+      ],
+      "any_of_ok": true,
+      "tool_ok": true
+    }
+  ]
+}

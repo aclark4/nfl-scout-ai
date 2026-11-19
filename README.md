@@ -76,7 +76,7 @@ Model: `claude-haiku-5-5` · Run: 2026-11-19T09:21:55 · 18 questions per mode
 ### Findings
 - **Brittle grader, not a wrong answer** "Who avoided sacks the best?" Failed in both modes, but both answers say Andy Dalton took the fewest sacks(in 6 games though), and Derek Carr had the best sack rate. I was looking for the best sack rate, and I had forbid the answer to include "Andy Dalton". This is an open ended question though, and string matching may not be the best fit, and an LLM judge should likely replace.
 - **Retrieval misses on vocabulary.** "Which quarterback threw the deepest passes?" failed in the baseline because the leaderboard is titled "average depth of target," and semantic search didn't connect the two. The baseline model *declined* rather than guessing; the full agent recovered by calling `rank_qbs`.
-- **No hallucinations.** All three out-of-scope questions were declined in both modes, across ever run.
+- **No hallucinations.** All three out-of-scope questions were declined in both modes, across every run.
 - **Tools trade cost for reliability.** The agent uses about 3x the tokens and about 0.8 s more latency, in exchange for correct rankings and exact comparisons.
 - **The first eval run caught a bug in the eval itself.** The baseline initially scored 88% because its system prompt still told it to call tools it didn't have, and it emitted a fake tool call as text. Giving the baseline its own prompt made the comparison fair (88% → 94%).
 - **Mocks weren't enough.** All unit tests passed with a fake Claude client, but the first real API call returned a content-block type the fake never produced. The agent now passes Claude's response blocks back unchanged.
@@ -86,7 +86,7 @@ Model: `claude-haiku-5-5` · Run: 2026-11-19T09:21:55 · 18 questions per mode
 
 The prototype answers the feasibility question: tool-augmented RAG is accurate on this data, declines out-of-scope questions, and explains its reasoning. It is not ready to scale yet:
 
-1. **Grow the eval set** from 18 to 50+ questions, including multi-step and ambiguous ones, before trusting the 100%.
+1. **Grow the eval set** from 18 to 50+ questions, including multi-step and ambiguous ones, before trusting the these numbers.
 2. **Fix vocabulary misses** with query rewriting or hybrid keyword + vector search.
 3. **Route by question type.** Simple lookups could skip tools or use a cheaper path; comparisons and rankings need tools.
 4. **Normalize the formula** to per-game or per-attempt rates so it measures quality, not durability.
